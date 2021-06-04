@@ -1,0 +1,29 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: SantasList
+    network: rinkeby
+    source:
+      address: "0x77db9F5A772A3b4d2f4Dc8357A2457e1Df77c794"
+      abi: SantasList
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.2
+      language: wasm/assemblyscript
+      entities:
+        - NewNaughtyLister
+        - NewNiceLister
+        - WithdrawFees
+      abis:
+        - name: SantasList
+          file: ./abis/SantasList.json
+      eventHandlers:
+        - event: NewNaughtyLister(address)
+          handler: handleNewNaughtyLister
+        - event: NewNiceLister(address,uint256)
+          handler: handleNewNiceLister
+        - event: WithdrawFees(address,uint256)
+          handler: handleWithdrawFees
+      file: ./src/mapping.ts

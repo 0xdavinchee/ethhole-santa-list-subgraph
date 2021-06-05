@@ -1,5 +1,16 @@
-type ExampleEntity @entity {
+type NiceLister @entity {
   id: ID!
-  count: BigInt!
-  naughtyLister: Bytes! # address
+  address: Bytes!
+  feePaid: BigInt!
+}
+
+type NaughtyLister @entity {
+  id: ID!
+  address: Bytes!
+}
+
+type WithdrawalFeeEvent @entity {
+  id: ID!
+  address: Bytes!
+  amountWithdrawn: BigInt!
 }

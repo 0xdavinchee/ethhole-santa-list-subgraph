@@ -13,9 +13,9 @@ dataSources:
       apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
-        - NewNaughtyLister
-        - NewNiceLister
-        - WithdrawFees
+        - NaughtyLister
+        - NiceLister
+        - WithdrawalEvent
       abis:
         - name: SantasList
           file: ./abis/SantasList.json

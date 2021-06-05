@@ -9,8 +9,9 @@ type NaughtyLister @entity {
   address: Bytes!
 }
 
-type WithdrawalFeeEvent @entity {
+type WithdrawalEvent @entity {
   id: ID!
   address: Bytes!
   amountWithdrawn: BigInt!
+  withdrawnAt: BigInt!
 }

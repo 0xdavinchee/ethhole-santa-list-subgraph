@@ -6,7 +6,7 @@ import {
 import {
   NaughtyLister,
   NiceLister,
-  WithdrawalFeeEvent,
+  WithdrawalEvent,
 } from "../generated/schema";
 
 export function handleNewNaughtyLister(event: NewNaughtyLister): void {
@@ -28,11 +28,12 @@ export function handleNewNiceLister(event: NewNiceLister): void {
 }
 
 export function handleWithdrawFees(event: WithdrawFees): void {
-  let withdrawalFeeEvent = new WithdrawalFeeEvent(
+  let withdrawalEvent = new WithdrawalEvent(
     event.transaction.hash.toHex() + "-" + event.logIndex.toString()
   );
-  withdrawalFeeEvent.address = event.params.withdrawer;
-  withdrawalFeeEvent.amountWithdrawn = event.params.amount;
+  withdrawalEvent.address = event.params.withdrawer;
+  withdrawalEvent.amountWithdrawn = event.params.amount;
+  withdrawalEvent.withdrawnAt = event.block.timestamp;
 
-  withdrawalFeeEvent.save();
+  withdrawalEvent.save();
 }
